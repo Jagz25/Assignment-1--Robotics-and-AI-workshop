@@ -44,7 +44,7 @@ void setup() {
 
 void loop() {
    expanderData = IOexpanderRead(PEXP_I2CADDR);
-    current_ButtonState = (expanderData >> 5, BIN);
+    current_ButtonState = (bitRead(0,1));
     
     // Transition from High to Low, Button press instance
     if ((current_ButtonState == LOW) && (previous_ButtonState == HIGH)){
