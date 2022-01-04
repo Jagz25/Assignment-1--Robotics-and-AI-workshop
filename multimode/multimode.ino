@@ -1,14 +1,3 @@
-/* 
- *  Ex_06_1 - Millis()
- *  Input & Output
- *  
- *  LED 
- *  -- IO2
- *  Switch
- *  -- IO9
- *  
- */
-
 #define ONBOARD_LED 2    // LED IO2
 #define ONBOARD_SW  9    // Switch IO9
 
@@ -28,24 +17,7 @@ void setup() {
 }
 
 void loop() {
-    // Example 1 - Print Millis()
     
-//    Serial.print("Seconds(s): ");
-//    Serial.println(millis()/1000);
-
-    
-    
-    
-    // Example 2 - Blink LED every second (1000 ms)
-    /*
-    digitalWrite(ONBOARD_LED, ((millis() / 1000) % 2 == 0)? LOW: HIGH);
-    
-    */
-
-    
-    // Example 3 - Multi Mode Selector - Blocking Problem
-    
-    // Button Reading portion
     current_ButtonState = digitalRead(ONBOARD_SW);
     
     // Transition from High to Low, Button press instance
@@ -55,10 +27,30 @@ void loop() {
         Serial.println(current_mode);
     }
     previous_ButtonState = current_ButtonState;
+   switch (current_mode) {
+    case 0:
+    digitalWrite(ONBOARD_LED, ((millis() / 1000) % 2 == 0)? LOW: HIGH);
+    break;
 
-    // Maybe do something with LED blinking here?
-    // If you put a delay(5000) while doing LED blinking here, do you think it will affect the button read?
+    case 1:
+    digitalWrite(ONBOARD_LED, ((millis() / 1000) % 3 == 0)? LOW: HIGH);// every 1/3 of a second
+    break;
+
+    case 2:
+    digitalWrite(ONBOARD_LED, ((millis() / 1000) % 5 == 0)? LOW: HIGH);// every 1/5 of a second
+    break;
+
+    case 3:
+    digitalWrite(ONBOARD_LED, ((millis() / 1000) % 7 == 0)? LOW: HIGH);// every 1/7 of a second
+    break;
+
+    default:
+    digitalWrite(ONBOARD_LED, ((millis() / 1000) % 2 == 0)? LOW: HIGH);
+    break;
+}
+    
+
+   
 
     
 }
-             
